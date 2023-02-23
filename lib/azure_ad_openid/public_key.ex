@@ -69,7 +69,7 @@ defmodule AzureADOpenId.PublicKey do
   end
 
   defp http_request!(url) do
-    case HTTPoison.get(url) do
+    case HTTPoison.get(url, [], [ssl: [{:versions, [:'tlsv1.2']}]]) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body
 
