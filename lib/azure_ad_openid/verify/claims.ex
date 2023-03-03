@@ -52,13 +52,13 @@ defmodule AzureADOpenId.Verify.Claims do
     # oid
     # sub
 
-    Enforce.true!(
-      [
-        # appid
-        {expected_appid == claims["appid"], "appid"}
-      ],
-      "Invalid claim: "
-    )
+    # Enforce.true!(
+    #   [
+    #     # appid
+    #     {expected_appid == claims["appid"], "appid"}
+    #   ],
+    #   "Invalid claim: "
+    # )
 
     claims
   end
