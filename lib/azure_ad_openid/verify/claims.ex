@@ -77,8 +77,8 @@ defmodule AzureADOpenId.Verify.Claims do
         # time checks
         {now < claims["exp"], "exp"},
         {now >= claims["nbf"], "nbf"},
-        {now >= claims["iat"], "iat"},
-        {now <= claims["iat"] + iat_timeout, "iat"}
+        {now >= claims["iat"], "iat"}
+        # {now <= claims["iat"] + iat_timeout, "iat"}
       ],
       "Invalid claim: "
     )
