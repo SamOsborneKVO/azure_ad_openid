@@ -60,6 +60,7 @@ defmodule AzureAdOpenid.MixProject do
       {:jason, "~> 1.1"},
       {:secure_random, "~> 0.5"},
       {:httpoison, "~> 1.2"},
+      {:tzdata, "~> 1.1"},
 
       # tools
       {:mock, "~> 0.3.3", only: :test},

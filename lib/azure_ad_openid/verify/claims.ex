@@ -66,7 +66,10 @@ defmodule AzureADOpenId.Verify.Claims do
   def common!(claims, config, iat_timeout \\ @iat_timeout) do
     expected_tid = config[:tenant]
     expected_iss = "https://sts.windows.net/#{expected_tid}/"
-    now = System.system_time(:second)
+    # now = System.system_time(:second)
+    now =
+      DateTime.to_unix(DateTime.now("Europe/London"), :second)
+      |> IO.inspect(label: "datetime.now in AzureADOpenId plugin")
 
     Enforce.true!(
       [
