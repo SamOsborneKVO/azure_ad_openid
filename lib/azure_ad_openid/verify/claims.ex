@@ -67,7 +67,8 @@ defmodule AzureADOpenId.Verify.Claims do
     expected_tid = config[:tenant]
     expected_iss = "https://sts.windows.net/#{expected_tid}/"
     # now = System.system_time(:second)
-    {:ok, now} = DateTime.to_unix(DateTime.now("Europe/London"), :second)
+    {:ok, now} = DateTime.now("Europe/London")
+    {:ok, nowUnix} = DateTime.to_unix(now, :second)
 
     Enforce.true!(
       [
@@ -76,9 +77,9 @@ defmodule AzureADOpenId.Verify.Claims do
         {expected_tid == claims["tid"], "tid"},
 
         # time checks
-        {now < claims["exp"], "exp"},
-        {now >= claims["nbf"], "nbf"},
-        {now >= claims["iat"], "iat"}
+        {nowUnix < claims["exp"], "exp"},
+        {nowUnix >= claims["nbf"], "nbf"},
+        {nowUnix >= claims["iat"], "iat"}
         # {now <= claims["iat"] + iat_timeout, "iat"}
       ],
       "Invalid claim: "
