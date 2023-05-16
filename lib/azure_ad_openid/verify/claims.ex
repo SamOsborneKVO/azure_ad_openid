@@ -68,7 +68,7 @@ defmodule AzureADOpenId.Verify.Claims do
     expected_iss = "https://sts.windows.net/#{expected_tid}/"
     # now = System.system_time(:second)
     {:ok, now} = DateTime.now("Europe/London")
-    {:ok, nowUnix} = DateTime.to_unix(now, :second)
+    nowUnix = DateTime.to_unix(now, :second)
 
     Enforce.true!(
       [
